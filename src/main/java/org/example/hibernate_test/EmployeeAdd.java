@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class AddSomeData {
+public class EmployeeAdd {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
@@ -13,11 +13,11 @@ public class AddSomeData {
                 .buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
-            Employee emp = new Employee("Irina", "Lavrenuk", "HR", 750);
+            Employee emp = new Employee("Irina", "Kusmenko", "HR", 900);
             session.beginTransaction();
             session.save(emp);
             session.getTransaction().commit();
-            System.out.println("Some data was added");
+            System.out.println(emp);
         }
         finally {
             factory.close();
