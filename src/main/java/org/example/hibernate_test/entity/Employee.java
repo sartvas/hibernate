@@ -25,6 +25,18 @@ public class Employee {
     @Column(name="salary")
     private int salary;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name="details_id")
+    private Detail empDetail;
+
+    public Detail getEmpDetail() {
+        return empDetail;
+    }
+
+    public void setEmpDetail(Detail empDetail) {
+        this.empDetail = empDetail;
+    }
+
     public Employee() {
     }
 

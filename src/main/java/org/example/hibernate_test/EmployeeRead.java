@@ -1,5 +1,6 @@
 package org.example.hibernate_test;
 
+import org.example.hibernate_test.entity.Detail;
 import org.example.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -12,22 +13,27 @@ public class EmployeeRead {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
+        Session session = null;
         try {
-            Session session = factory.getCurrentSession();
+            session = factory.getCurrentSession();
             session.beginTransaction();
 
-//            Employee employee = session.get(Employee.class,3);
+            Employee employee = session.get(Employee.class,1);
+            System.out.println(employee+" "+employee.getEmpDetail());
 //            List <Employee> allEmployees = session.createQuery("from Employee").getResultList();
-            List <Employee> allEmployees = session.createQuery("from Employee " + "where name = 'Andrew'").getResultList();
-            for(Employee e: allEmployees){
-                System.out.println(e);
-            }
+//            List <Employee> allEmployees = session.createQuery("from Employee " + "where name = 'Artom'").getResultList();
+//            for(Employee e: allEmployees){
+//                System.out.println(e);
+//            }
+
 
             session.getTransaction().commit();
 
         }
         finally {
+            session.close();
             factory.close();
         }
 

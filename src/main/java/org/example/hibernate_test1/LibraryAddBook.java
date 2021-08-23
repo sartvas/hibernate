@@ -12,7 +12,7 @@ public class LibraryAddBook {
                 .buildSessionFactory();
         try {
             Session session = factory.getCurrentSession();
-            Book book = new Book("Lukomorje", "Pushkin A.S.", "Poem", 750);
+            Book book = new Book("Siberia", "Tolstoy L.N.", "Stories", 1750);
             session.beginTransaction();
             session.save(book);
             session.getTransaction().commit();

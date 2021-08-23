@@ -1,5 +1,6 @@
 package org.example.hibernate_test;
 
+import org.example.hibernate_test.entity.Detail;
 import org.example.hibernate_test.entity.Employee;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,20 +11,24 @@ public class EmployeeDelete {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
+
+        Session session = null;
         try {
-            Session session = factory.getCurrentSession();
+            session = factory.getCurrentSession();
             session.beginTransaction();
 
-//            Employee employee = session.get(Employee.class,4);
-//            session.delete(employee);
+            Employee employee = session.get(Employee.class,3);
+            session.delete(employee);
 
-            session.createQuery("delete Employee " + "where department = 'HR'").executeUpdate();
+//            session.createQuery("delete Employee " + "where department = 'HR'").executeUpdate();
 
             session.getTransaction().commit();
 
         }
         finally {
+            session.close();
             factory.close();
         }
 
