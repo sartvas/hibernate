@@ -16,9 +16,10 @@ public class EmployeeAdd {
         Session session = null;
         try {
             session = factory.getCurrentSession();
-            Employee emp = new Employee("Sergey", "qqqq", "IqqT", 1500);
-            Detail detail = new Detail("qqqq", "+qqqq+7928qqq5489632", "qqqqq@mail.ru");
+            Employee emp = new Employee("Galina", "Petrova", "HR", 990);
+            Detail detail = new Detail("Kazan", "+79886595874", "12malyshka12@gmail.com");
             emp.setEmpDetail(detail);
+            detail.setEmployee(emp);
             session.beginTransaction();
             session.save(emp);
             session.getTransaction().commit();

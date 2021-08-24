@@ -19,9 +19,10 @@ public class EmployeeRead {
         try {
             session = factory.getCurrentSession();
             session.beginTransaction();
-
-            Employee employee = session.get(Employee.class,1);
-            System.out.println(employee+" "+employee.getEmpDetail());
+            Detail detail = session.get(Detail.class, 5);
+            detail.getEmployee().setEmpDetail(null);
+//            Employee employee = session.get(Employee.class,1);
+//            System.out.println(employee+" "+employee.getEmpDetail());
 //            List <Employee> allEmployees = session.createQuery("from Employee").getResultList();
 //            List <Employee> allEmployees = session.createQuery("from Employee " + "where name = 'Artom'").getResultList();
 //            for(Employee e: allEmployees){

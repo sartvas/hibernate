@@ -19,8 +19,10 @@ public class EmployeeDelete {
             session = factory.getCurrentSession();
             session.beginTransaction();
 
-            Employee employee = session.get(Employee.class,3);
-            session.delete(employee);
+//            Employee employee = session.get(Employee.class,3);
+//            session.delete(employee);
+            Detail detail = session.get(Detail.class, 5);
+            session.delete(detail);
 
 //            session.createQuery("delete Employee " + "where department = 'HR'").executeUpdate();
 
