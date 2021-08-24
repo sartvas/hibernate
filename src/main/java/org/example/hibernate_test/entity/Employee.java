@@ -29,6 +29,10 @@ public class Employee {
     @JoinColumn (name="details_id")
     private Detail empDetail;
 
+    @OneToMany
+    @JoinColumn(name = "department_id")
+    private Department departments;
+
     public Detail getEmpDetail() {
         return empDetail;
     }
@@ -80,7 +84,7 @@ public class Employee {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
