@@ -20,7 +20,7 @@ public class EmployeeRead {
             session = factory.getCurrentSession();
             session.beginTransaction();
             Detail detail = session.get(Detail.class, 5);
-            detail.getEmployee().setEmpDetail(null);
+//            detail.getEmployee().setEmpDetail(null);
 //            Employee employee = session.get(Employee.class,1);
 //            System.out.println(employee+" "+employee.getEmpDetail());
 //            List <Employee> allEmployees = session.createQuery("from Employee").getResultList();

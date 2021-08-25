@@ -1,23 +1,27 @@
 package org.example.hibernate_test;
 
-import org.example.hibernate_test.entity.Detail;
-import org.example.hibernate_test.entity.Employee;
+import org.example.hibernate_test.entity.Department;
+import org.example.hibernate_test.entity.Employee2;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
-public class EmployeeAdd {
+
+public class DepartmentRead {
     public static void main(String[] args) {
         SessionFactory factory = new Configuration()
                 .configure("hibernate.cfg.xml")
-                .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Employee2.class)
+                .addAnnotatedClass(Department.class)
                 .buildSessionFactory();
         Session session = null;
         try {
             session = factory.getCurrentSession();
-            Employee emp = new Employee("Galina", "Petrova", "HR", 990);
             session.beginTransaction();
-            session.save(emp);
+
+            Department department = session.get(Department.class, 1);
+            System.out.println(department);
+
             session.getTransaction().commit();
             System.out.println("Done");
         }

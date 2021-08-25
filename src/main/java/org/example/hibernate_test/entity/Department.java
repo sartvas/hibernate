@@ -24,19 +24,19 @@ public class Department {
     private int maxSalary;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "department")
-    private List<Employee> emps;
+    private List<Employee2> emps;
 
-    public List<Employee> getEmps() {
+    public List<Employee2> getEmps() {
         return emps;
     }
 
-    public void setEmps(List<Employee> emps) {
+    public void setEmps(List<Employee2> emps) {
         this.emps = emps;
     }
 
-    public void addEmployeestoDepartmen(Employee employee){
+    public void addEmployeestoDepartmen(Employee2 employee){
         if(emps == null){
-            emps = new ArrayList<>();
+            emps = new ArrayList<Employee2>();
         }
         emps.add(employee);
         employee.setDepartment(this);

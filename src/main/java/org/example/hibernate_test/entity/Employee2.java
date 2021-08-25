@@ -1,13 +1,10 @@
 package org.example.hibernate_test.entity;
 
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="employees")
-public class Employee {
-
+public class Employee2 {
     @Id
     @Column(name="id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,37 +16,19 @@ public class Employee {
     @Column(name="surname")
     private String surname;
 
-    @Column(name="department")
-    private String department;
-
     @Column(name="salary")
     private int salary;
 
-//    @OneToOne(cascade = CascadeType.ALL)
-//    @JoinColumn (name="details_id")
-//    private Detail empDetail;
-//
-//    public Detail getEmpDetail() {
-//        return empDetail;
-//    }
-//
-//    public void setEmpDetail(Detail empDetail) {
-//        this.empDetail = empDetail;
-//    }
+    public Employee2(){};
 
-    public Employee() {
-    }
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE})
+    @JoinColumn(name = "department_id")
+    private Department department;
 
-    public Employee(String name, String surname, String department, int salary) {
+    public Employee2(String name, String surname, int salary) {
         this.name = name;
         this.surname = surname;
-        this.department = department;
         this.salary = salary;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" + "id=" + id + ", name='" + name + '\'' + ", surname='" + surname + '\'' + ", department='" + department + '\'' + ", salary=" + salary + '}';
     }
 
     public int getId() {
@@ -82,5 +61,18 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee2{" + "id=" + id + ", name='" + name + '\'' + ", surname='" + surname + '\'' + ", salary=" + salary + '}';
     }
 }
